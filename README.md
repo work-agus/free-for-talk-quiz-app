@@ -5,7 +5,6 @@ A real-time conversation starter app to spark interesting discussions with frien
 ## Prerequisites
 
 - **Node.js** and **npm** must be installed on your machine.
-- An **OpenAI API Key**.
 
 ## Installation
 
@@ -22,7 +21,7 @@ A real-time conversation starter app to spark interesting discussions with frien
 
 3. Configure Environment:
    - Open `.env` file.
-   - Add your OpenAI API Key: `OPENAI_API_KEY=sk-...`
+   - Ensure `PORT=3000` is set.
 
 ## Running the App
 
@@ -47,5 +46,4 @@ A real-time conversation starter app to spark interesting discussions with frien
 
 - **Node.js & Express**: Backend server.
 - **Socket.io**: Real-time bidirectional communication.
-- **OpenAI API**: Generates unique questions.
 - **TailwindCSS**: Styling.

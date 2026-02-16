@@ -53,6 +53,14 @@ function requestQuestion() {
         // Show loading state
         questionText.innerHTML = '<span class="animate-pulse">Thinking... 🤔</span>';
         resetDoneState();
+
+        // Timeout handling (fallback if server doesn't respond)
+        const timeoutId = setTimeout(() => {
+            if (questionText.innerHTML.includes('Thinking...')) {
+                questionText.textContent = "Koneksi terputus atau server sibuk. Coba klik lagi ya! ⏳";
+            }
+        }, 5000); // 5 seconds timeout
+
         socket.emit('request_question', { roomId: currentRoomId, topic: currentTopic });
     }
 }
@@ -65,6 +73,12 @@ doneBtn.addEventListener('click', () => {
 });
 
 // Socket Events
+socket.on('connect_error', (err) => {
+    console.log('Connection Error:', err);
+    // Optional: Notify user specifically about "Session ID unknown" if we catch it, 
+    // but usually it's a generic transport error on the client side.
+});
+
 socket.on('new_question', (question) => {
     questionText.textContent = question;
     resetDoneState();
