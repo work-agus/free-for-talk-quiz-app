@@ -1,4 +1,8 @@
-const socket = io();
+const socket = io({
+    reconnection: true,
+    reconnectionAttempts: 10,
+    reconnectionDelay: 1000,
+});
 
 // DOM Elements
 const loginScreen = document.getElementById('login-screen');
@@ -15,6 +19,26 @@ const questionContainer = document.getElementById('question-container');
 // State
 let currentRoomId = null;
 let currentTopic = 'Deep Talk'; // Default
+
+// Socket Connection Status UI
+socket.on('connect', () => {
+    console.log('Connected to server');
+    if (currentRoomId) {
+        socket.emit('join_room', currentRoomId);
+        displayRoomId.classList.remove('text-red-500');
+        displayRoomId.classList.add('text-purple-600');
+        displayRoomId.innerHTML = currentRoomId;
+    }
+});
+
+socket.on('disconnect', () => {
+    console.log('Disconnected');
+    if (currentRoomId) {
+        displayRoomId.innerHTML = `${currentRoomId} <span class="text-xs text-red-500">(Offline)</span>`;
+        displayRoomId.classList.remove('text-purple-600');
+        displayRoomId.classList.add('text-red-500');
+    }
+});
 
 // Join Room Logic
 joinBtn.addEventListener('click', () => {
