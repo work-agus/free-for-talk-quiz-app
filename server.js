@@ -2,17 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const OpenAI = require('openai');
 const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-
-// Initialize OpenAI
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
