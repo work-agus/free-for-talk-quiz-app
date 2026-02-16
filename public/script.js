@@ -4,6 +4,23 @@ const socket = io({
     reconnectionDelay: 1000,
 });
 
+// Sound Manager
+const sounds = {
+    join: new Audio('/sounds/join.mp3'),
+    pop: new Audio('/sounds/pop.mp3'),
+    success: new Audio('/sounds/success.mp3'),
+    click: new Audio('/sounds/click.mp3')
+};
+
+function playSound(name) {
+    try {
+        sounds[name].currentTime = 0;
+        sounds[name].play().catch(e => console.log('Audio play blocked:', e));
+    } catch (err) {
+        console.error("Error playing sound:", err);
+    }
+}
+
 // DOM Elements
 const loginScreen = document.getElementById('login-screen');
 const gameScreen = document.getElementById('game-screen');
@@ -104,11 +121,13 @@ socket.on('connect_error', (err) => {
 });
 
 socket.on('new_question', (question) => {
+    playSound('pop');
     questionText.textContent = question;
     resetDoneState();
 });
 
 socket.on('question_marked_done', () => {
+    playSound('success');
     questionContainer.classList.add('bg-green-100', 'border-green-300');
     questionText.classList.add('line-through', 'text-gray-400');
     doneBtn.innerHTML = '<span>✅</span> Selesai!';
@@ -116,6 +135,7 @@ socket.on('question_marked_done', () => {
 });
 
 socket.on('partner_joined', () => {
+    playSound('join');
     // Simple notification
     const notification = document.createElement('div');
     notification.className = 'absolute top-0 left-0 w-full bg-green-500 text-white text-center py-2 text-sm font-bold rounded-t-2xl animate-bounce';
