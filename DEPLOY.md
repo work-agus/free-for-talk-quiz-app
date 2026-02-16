@@ -2,7 +2,7 @@
 
 ## ⚠️ Important Note About Vercel
 
-You requested deployment to **Vercel**. I have added the `vercel.json` configuration file to support this
+You requested deployment to **Vercel**. I have added the `vercel.json` configuration file to support this.
 
 **HOWEVER, PLEASE NOTE:**
 This application uses **Socket.io** (WebSockets) for real-time features (connecting two users). **Vercel Serverless Functions do NOT support persistent WebSocket connections natively.**
@@ -45,6 +45,7 @@ Railway is excellent for this app because it keeps the WebSocket connection aliv
 - Supports persistence (WebSocket doesn't drop easily).
 - Free trial available.
 - Zero config for Node.js apps like this one.
+- **Fixed Network Errors**: If you see a "Network" error, go to the **Settings** tab in your Railway project, scroll down to **Networking**, and click **Generate Domain**.
 
 ### Option 3: Deploy to Glitch (Easiest for testing)
 
