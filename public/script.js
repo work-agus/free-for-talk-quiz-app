@@ -139,7 +139,7 @@ socket.on('partner_joined', () => {
     // Simple notification
     const notification = document.createElement('div');
     notification.className = 'absolute top-0 left-0 w-full bg-green-500 text-white text-center py-2 text-sm font-bold rounded-t-2xl animate-bounce';
-    notification.textContent = 'Partner Joined! ❤️';
+    notification.textContent = 'Partner Joined! 🙋';
     gameScreen.appendChild(notification);
     setTimeout(() => notification.remove(), 3000);
 });
