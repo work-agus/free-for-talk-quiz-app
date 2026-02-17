@@ -1,10 +1,11 @@
-# Connection Quiz ✨
+# Couple's Quiz App ❤️
 
-A real-time conversation starter app to spark interesting discussions with friends, family, or partners.
+A real-time quiz application for couples to spark interesting conversations, powered by OpenAI.
 
 ## Prerequisites
 
 - **Node.js** and **npm** must be installed on your machine.
+- An **OpenAI API Key**.
 
 ## Installation
 
@@ -21,7 +22,7 @@ A real-time conversation starter app to spark interesting discussions with frien
 
 3. Configure Environment:
    - Open `.env` file.
-   - Ensure `PORT=3000` is set.
+   - Add your OpenAI API Key: `OPENAI_API_KEY=sk-...`
 
 ## Running the App
 
@@ -46,4 +47,5 @@ A real-time conversation starter app to spark interesting discussions with frien
 
 - **Node.js & Express**: Backend server.
 - **Socket.io**: Real-time bidirectional communication.
+- **OpenAI API**: Generates unique questions.
 - **TailwindCSS**: Styling.
